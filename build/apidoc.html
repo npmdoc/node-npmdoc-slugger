@@ -1,0 +1,122 @@
+<div class="apidocDiv">
+<style>
+/*csslint
+*/
+.apidocDiv {
+    background: #fff;
+    font-family: Arial, Helvetica, sans-serif;
+}
+.apidocDiv a[href] {
+    color: #33f;
+    font-weight: bold;
+    text-decoration: none;
+}
+.apidocDiv a[href]:hover {
+    text-decoration: underline;
+}
+.apidocCodeCommentSpan {
+    background: #bbf;
+    color: #000;
+    display: block;
+}
+.apidocCodeKeywordSpan {
+    color: #d00;
+    font-weight: bold;
+}
+.apidocCodePre {
+    background: #eef;
+    border: 1px solid;
+    color: #777;
+    padding: 5px;
+    white-space: pre-wrap;
+}
+.apidocFooterDiv {
+    margin-top: 20px;
+    text-align: center;
+}
+.apidocModuleLi {
+    margin-top: 10px;
+}
+.apidocSectionDiv {
+    border-top: 1px solid;
+    margin-top: 20px;
+}
+.apidocSignatureSpan {
+    color: #777;
+    font-weight: bold;
+}
+</style>
+<h1>api documentation for
+    <a
+
+        href="https://github.com/henrikjoreteg/slugger"
+
+    >slugger (v1.0.1)</a>
+</h1>
+<h4>Takes a string, returns a url friendly string. Works in browser and node. Dead simple.</h4>
+<div class="apidocSectionDiv"><a
+    href="#apidoc.tableOfContents"
+    id="apidoc.tableOfContents"
+><h1>table of contents</h1></a><ol>
+
+    <li class="apidocModuleLi"><a href="#apidoc.module.slugger">module slugger</a><ol>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.slugger.slugger">
+            function <span class="apidocSignatureSpan"></span>slugger
+            <span class="apidocSignatureSpan">(string, opts)</span>
+            </a>
+
+        </li>
+
+    </ol></li>
+
+</ol></div>
+
+<div class="apidocSectionDiv">
+<h1><a href="#apidoc.module.slugger" id="apidoc.module.slugger">module slugger</a></h1>
+
+
+    <h2>
+        <a href="#apidoc.element.slugger.slugger" id="apidoc.element.slugger.slugger">
+        function <span class="apidocSignatureSpan"></span>slugger
+        <span class="apidocSignatureSpan">(string, opts)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">function slugger(string, opts) {
+    opts || (opts = {});
+    var allowedCharacters = &#x22;A-Za-z0-9_ -&#x22;;
+    if (opts.alsoAllow) allowedCharacters = opts.alsoAllow + allowedCharacters;
+    var re = new RegExp(&#x27;[^&#x27; + allowedCharacters + &#x27;]&#x27;, &#x27;g&#x27;);
+    var maintainCase = opts.maintainCase || false;
+    var replacement = opts.replacement || &#x27;-&#x27;;
+    var smartTrim = opts.smartTrim;
+    var decode = (opts.decode !== false);
+    var result;
+    var lucky;
+
+    if (typeof string !== &#x27;string&#x27;) return &#x27;&#x27;;
+    if (!maintainCase) string = string.toLowerCase();
+    if (decode) string = decodeURIComponent(string);
+    result = string.trim().replace(re, &#x27;&#x27;).replace(whitespace, replacement);
+    if (smartTrim &#x26;&#x26; result.length &#x3e; smartTrim) {
+        lucky = result.charAt(smartTrim) === replacement;
+        result = result.slice(0, smartTrim);
+        if (!lucky) result = result.slice(0, result.lastIndexOf(replacement));
+    }
+    return result;
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    </ul>
+
+
+</div>
+
+<div class="apidocFooterDiv">
+    [ this document was created with
+    <a href="https://github.com/kaizhu256/node-utility2" target="_blank">utility2</a>
+    ]
+</div>
+</div>
